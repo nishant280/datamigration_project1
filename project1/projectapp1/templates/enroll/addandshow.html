@@ -1,0 +1,70 @@
+{% extends 'enroll/base.html' %}
+{% block content %}
+{% if messages %}
+{% for result in messages %}
+<b style="color:green;">{{result}}</b>
+{% endfor %}
+{% endif %}
+<div class="row">
+  <div class="w-50 m-auto">
+    <h4 class="text-center alert alert-secondary">Add new Student</h4>
+    <form action="" method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+      <div class="text-center">
+      <input type="submit"  class="btn btn-success w-25" value="Add">
+      </div>
+    </form>
+  </div>
+  <div class="col-sm-12 mt-5">
+    <h4 class="text-center alert alert-success">Student Information</h4>
+    {% if stu %}
+    <table class="table table-hover text-center">
+      <thead>
+        <tr class="text-center">
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Address</th>
+          <th scope="col">Number</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for st in stu %}
+        <tr>
+          <td scope="row" class="id1">{{st.id}}</td>
+          <td>{{st.name}}</td>
+          <td>{{st.email}}</td>
+          <td class="s1">{{st.address}}</td>
+          <td>{{st.number}}
+          <td class="ge1">{{st.gender}}</td>
+          <td>
+            <a href="{% url 'updatedata' st.id %}" class="btn btn-sm btn-warning">Edit</a>
+           <form action="{% url 'deletedata' st.id %}" method="post" class="d-inline"> {% csrf_token %}
+              <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <h4 class="text-center alert alert-danger">No Records Found</h4>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+

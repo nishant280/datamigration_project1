@@ -1,0 +1,18 @@
+ /* table{
+    table-layout: fixed;
+} */
+
+.id1{
+  background-color: lightblue;
+  width: 2px !important;
+}
+
+.ge1{
+    width: 2px !important;
+}
+
+td .s1{
+  width: 20px;
+  height: 10px;
+  overflow: scroll;
+}
